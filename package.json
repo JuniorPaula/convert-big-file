@@ -1,0 +1,17 @@
+{
+  "name": "project-csvtojndjson",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/",
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --runInBand"
+  },
+  "keywords": [],
+  "author": "JuniorPaula",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "29.2"
+  }
+}
