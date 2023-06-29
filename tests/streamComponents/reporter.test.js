@@ -5,6 +5,7 @@ describe("Reporter test suit", () => {
     it("it should print progress status correctly", () => {
         const loggerMock = jest.fn()
         const reporter = new Reporter({ logger: loggerMock })
+        reporter.LINE_LENGTH_AFTER_TURNED_INTO_JSON = 0
     
         const multiple = 10
         const progress = reporter.progress(multiple)
