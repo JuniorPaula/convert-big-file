@@ -1,11 +1,12 @@
 import { PassThrough } from 'node:stream'
+import { log } from '../streamComponents/logger.js'
 
 const A_HUNDRED_PERCENT = 100
 
 export default class Reporter {
     #loggerFn
 
-    constructor({ logger }) {
+    constructor({ logger = log } = {}) {
         this.#loggerFn = logger
     }
 

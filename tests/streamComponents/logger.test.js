@@ -1,8 +1,8 @@
 import { expect, describe, it, jest, afterAll } from '@jest/globals'
 import readline from 'node:readline'
-import { logger } from '../../src/util/logger'
+import { log } from '../../src/streamComponents/logger'
 
-describe("Logger test suit", () => {
+describe("Log test suit", () => {
     readline.cursorTo = jest.fn().mockImplementation()
     process.stdout.write = jest.fn().mockImplementation()
     
@@ -10,7 +10,7 @@ describe("Logger test suit", () => {
 
     it("writeInput", () => {
         const msg = "test"
-        logger(msg)
+        log(msg)
 
         expect(readline.cursorTo).toBeCalledWith(process.stdout, 0)
         expect(process.stdout.write).toBeCalledWith(msg)

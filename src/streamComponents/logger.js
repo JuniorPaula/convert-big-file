@@ -1,10 +1,10 @@
 import readline from 'node:readline'
 
-function logger(message) {
+function log(message) {
     readline.cursorTo(process.stdout, 0)
     process.stdout.write(message)
 }
 
 export {
-    logger
+    log
 }
