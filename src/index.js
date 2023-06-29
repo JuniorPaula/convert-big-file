@@ -8,6 +8,7 @@ import { pipeline } from 'node:stream/promises'
 
 import Reporter from './streamComponents/reporter.js';
 import CSVToNDJSON from './streamComponents/csvtondjson.js';
+import { log } from './streamComponents/logger.js';
 
 const reporter = new Reporter()
 
@@ -30,6 +31,8 @@ const processData = Transform({
 
 const csvToJSON = new CSVToNDJSON({ delimiter: ",", headers: ["id", "name", "desc", "age"] })
 
+const startedAt = Date.now()
+
 await pipeline(
     createReadStream(filename),
     csvToJSON,
@@ -37,3 +40,11 @@ await pipeline(
     reporter.progress(fileSize),
     createWriteStream("big.ndjson")
 )
+
+const A_MILLISECOND = 1000
+const A_MINUTE = 60
+
+const timeInSeconds = Math.round((Date.now() - startedAt) / A_MILLISECOND).toFixed(2)
+const finalTime = timeInSeconds > A_MILLISECOND ? `${timeInSeconds / A_MINUTE}m` : `${timeInSeconds}s`
+
+log(`took: ${finalTime} - process finished whit success!`)
